@@ -57,7 +57,7 @@ const About: React.FC = () => {
 
           <div className="space-y-6">
             <h3 className="text-xl font-semibold text-primary-700 dark:text-primary-400">
-              Web Developer & Ads Manager
+              MERN Stack Developer & Ads Manager
             </h3>
             <p className="text-secondary-700 dark:text-secondary-300 leading-relaxed">
               I'm a passionate web developer with over 1 years of experience
