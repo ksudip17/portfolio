@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Section from './ui/Section';
 import { PROJECTS } from '../lib/constants';
 import Card from './ui/Card';
-import { ExternalLink, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 
 const Projects: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -50,10 +50,16 @@ const Projects: React.FC = () => {
           className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10"
         >
           {PROJECTS.map((project) => (
-            <Card 
-              key={project.id} 
-              className="project-card opacity-0 transform translate-y-8"
+            <a 
+              href={project.link || '#'} 
+              target={project.link ? '_blank' : '_self'} 
+              rel={project.link ? 'noopener noreferrer' : ''} 
+              className="block"
             >
+              <Card 
+                key={project.id} 
+                className="project-card opacity-0 transform translate-y-8 cursor-pointer hover:opacity-90 transition-opacity"
+              >
               <div className="relative mb-6 overflow-hidden rounded-lg">
                 <img 
                   src={project.image} 
@@ -61,6 +67,7 @@ const Projects: React.FC = () => {
                   className="w-full h-60 object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
+
               <h3 className="text-xl font-semibold text-secondary-900 mb-2">
                 {project.title}
               </h3>
@@ -77,31 +84,19 @@ const Projects: React.FC = () => {
                   </span>
                 ))}
               </div>
-              <div className="flex gap-4">
-                {project.link && (
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center gap-1 text-sm text-primary-600 hover:text-primary-800 transition-colors"
-                  >
-                    <ExternalLink size={16} />
-                    View Live
-                  </a>
-                )}
-                {project.github && (
-                  <a 
-                    href={project.github} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center gap-1 text-sm text-secondary-700 hover:text-secondary-900 transition-colors"
-                  >
-                    <Github size={16} />
-                    View Code
-                  </a>
-                )}
-              </div>
-            </Card>
+              {project.github && (
+                <a 
+                  href={project.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center gap-1 text-sm text-secondary-700 hover:text-secondary-900 transition-colors"
+                >
+                  <Github size={16} />
+                  View Code
+                </a>
+              )}
+              </Card>
+            </a>
           ))}
         </div>
       </div>

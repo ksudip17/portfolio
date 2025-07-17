@@ -10,11 +10,11 @@ import Footer from './components/Footer';
 function App() {
   useEffect(() => {
     // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    Array.from(document.querySelectorAll('a[href^="#"]') as NodeListOf<HTMLAnchorElement>).forEach((anchor) => {
+      anchor.addEventListener('click', (e: MouseEvent) => {
         e.preventDefault();
         
-        const href = this.getAttribute('href');
+        const href = anchor.getAttribute('href');
         if (href) {
           const targetElement = document.querySelector(href);
           if (targetElement) {
